@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+      body {
+        width: 260px;
+        font-family: system-ui, sans-serif;
+        font-size: 14px;
+        margin: 0;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 15px;
+        margin: 0 0 10px;
+      }
+      .options {
+        margin-bottom: 10px;
+      }
+      .option {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 4px 0;
+      }
+      .option label {
+        cursor: pointer;
+      }
+      .toggle {
+        position: relative;
+        width: 36px;
+        height: 20px;
+        flex-shrink: 0;
+        margin-left: 8px;
+      }
+      .toggle input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      .toggle .slider {
+        position: absolute;
+        inset: 0;
+        background: #ccc;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .toggle .slider::before {
+        content: "";
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        left: 3px;
+        bottom: 3px;
+        background: #fff;
+        border-radius: 50%;
+        transition: transform 0.2s;
+      }
+      .toggle input:checked + .slider {
+        background: #1a73e8;
+      }
+      .toggle input:checked + .slider::before {
+        transform: translateX(16px);
+      }
+      button {
+        width: 100%;
+        padding: 8px;
+        font-size: 14px;
+        cursor: pointer;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background: #1a73e8;
+        color: #fff;
+      }
+      button:hover {
+        background: #1558b0;
+      }
+      button:disabled {
+        background: #aaa;
+        cursor: default;
+      }
+      #status {
+        margin-top: 8px;
+        font-size: 13px;
+        color: #555;
+      }
+      #status.error {
+        color: #c00;
+      }
+      #status.success {
+        color: #1a8a1a;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Deck Export</h1>
+    <div class="options">
+      <div class="option">
+        <label for="includeCommander">Include Commander</label>
+        <span class="toggle">
+          <input type="checkbox" id="includeCommander" checked />
+          <span class="slider"></span>
+        </span>
+      </div>
+      <div class="option">
+        <label for="includeSideboard">Include Sideboard</label>
+        <span class="toggle">
+          <input type="checkbox" id="includeSideboard" checked />
+          <span class="slider"></span>
+        </span>
+      </div>
+    </div>
+    <button id="copy">Copy Decklist</button>
+    <div id="status"></div>
+    <script src="popup.js"></script>
+  </body>
+</html>
